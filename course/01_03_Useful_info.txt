@@ -1,0 +1,5 @@
+To sign-up for an IDE with cloud9 go to: c9.io
+
+To reference documentation on cloud9, usually for "how-to's" or the like, go to: https://docs.c9.io/docs/
+
+By signing up with a browser based IDE like cloud9 we avoid the need to install any software locally on our machine in order to develop code as our cloud-based workspace comes with everything that we need to start developing right away

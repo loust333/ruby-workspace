@@ -1,0 +1,40 @@
+Find out more about ruby: www.ruby-lang.org
+
+To create a ruby program which says "Hello World", create a new file in your ruby_projects folder called helloworld.rb and within it fill in the following:
+
+puts "Hello World!"
+
+Save the file and then run it using the following command from your terminal:
+
+ruby helloworld.rb 
+
+- Ensure you run the command above from the ruby_projects folder if that's where you have created the file
+
+A variable is an object where you can store information, you can then use this information as you need later on by referring to the variable. To create a program that says "Hello World" using variables create a new file called helloworldvariable.rb and fill it in with the following:
+
+hello = "Hello World!"
+puts hello
+
+Save it and run it from the command line using the following command:
+
+ruby helloworldvariable.rb
+
+You can use methods in ruby to perform certain functions, a good way of thinking about using methods is "Is this logic something I may use later on?", common re-usable logic is always a candidate for methods. Methods in ruby usually take the form of:
+
+def method_name
+  #some logic
+end
+
+Methods can also take in arguments so you can call the method and pass in different arguments to use, to define a method named say to say things that you call it with, create a new file named helloworldmethod.rb and fill it in with the following:
+
+def say(anything)
+  puts anything
+end
+
+say "Hello World!"
+say "I have arrived!"
+say "Ruby is great!"
+
+Save the file and then run it from the command line.
+
+Congratulations you have written your first few Ruby programs!
