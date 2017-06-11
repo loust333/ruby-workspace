@@ -1,0 +1,72 @@
+Working with numbers:
+First enter the irb console by typing in irb:
+puts 1 + 2
+1 + 2
+5 + 6
+puts 2 * 5
+puts 15/5
+puts 20/3
+6 -> what happened here?
+Integers arithmetic, 20/3 it gives me an integer, to get an accurate decimal number I'll need a float
+20.0/3
+puts 20/3.to_f
+puts 20/3.0
+Now let's try variables
+x = 10
+y = 22
+y / x
+y.to_f / x
+now mod, let's say 20 % 3
+modulo, or mod operator it gives you the remainder
+Any odd number mod of 2 will always give you 1 so you can find odd numbers using mod, 23 % 2 will always give you 1
+24 % 2 is 0, test for even
+23.odd?
+22.odd?
+22.even?
+You're calling methods on integers and it's giving you a return value, since everything in Ruby in an object, so it's running a method on an object and it's working
+You can type in 1.methods and it'll give you a whole bunch of methods you can run on integers
+Now comparisons
+5 < 2
+10 < 20
+10 > 20
+10 < 10
+10 <= 10
+10 == 10
+10 != 11
+x = 12
+y = 12
+x == y
+How to generate a random number:
+rand
+rand(10) - between 0 and 10 but will exclude 10
+puts rand(10)
+Now convert float to integer
+12.0.to_i
+notice how the .0 is gone
+similarly you can convert string to int as well
+"5".to_i 
+x = 5
+x = x.to_i
+x.to_s
+x * 10
+x * 50
+x is a string, when you multiply that string by 5, it lists it 50 times
+50 * 5
+you cannot have 50 represented x(String) times
+but you can have 50 sets of x
+Repeat something 20 times
+20.times { puts "hi"}
+20.times { puts 10 }
+
+
+
+
+
+
+
+
+
+
+
+
+

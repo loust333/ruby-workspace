@@ -1,0 +1,59 @@
+In your playground.rb file enter in the following:
+
+x = 12
+y = 10
+
+puts x * y
+
+Save it, then run it from the console and you should get 120
+
+Now update it to get user input:
+puts "What do you want the first number to be?"
+first_number = gets.chomp
+puts "What do you want the second number to be?"
+second_number = gets.chomp
+puts first_number.to_f * second_number.to_f
+
+You can update the last line to be:
+puts "The first number multiplied by the second number is: #{first_number.to_f * second_number.to_f}"
+
+Homework assignment:
+Add in division, addition, subtraction and mod
+
+Answers:
+puts "The first number divided by the second number is: #{first_number.to_f / second_number.to_f}"
+puts "The first number subtracted from the second number is: #{second_number.to_f - first_number.to_f}"
+puts "The first number added to the second number is: #{first_number.to_f + second_number.to_f}"
+puts "The first number mod the second number is: #{first_number.to_f % second_number.to_f}"
+
+Second homework assignment, create methods to perform the calculations
+
+def multiply(x, y)
+  x * y
+end
+
+To call this method simply add in the following line instead of the first puts for multiply:
+puts multiply(first_number, second_number)
+
+Use the same method to create methods for the other 4 calculations then post your solutions (image or actual code) to the Q & A for this lecture
+
+Good luck!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

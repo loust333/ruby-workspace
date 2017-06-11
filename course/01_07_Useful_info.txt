@@ -1,0 +1,47 @@
+What is a String? A String is a group of characters in a specific sequence, you can use quotes around the characters to specify them as a string, for example "Hello World!"
+
+Create a playground.rb file in the ruby_projects directory to practice working with strings
+
+String concatenation is when you add in multiple strings together to form a new string using the + sign between them, example:
+
+first_name + " " + last_name # - String concatenation
+
+To start an interactive ruby session (irb console) type in irb and hit return/enter
+
+Some methods you can use on strings (example below assumes you have defined first_name as a variable referring to some string)
+first_name.class # shows the class, in this case String
+first_name.methods # displays methods available to your String variable that you can run
+first_name.nil? # a method
+first_name.length # a method that displays the length including whitespaces of your string
+first_name.reverse # reverses the arrangement of characters in your string
+first_name.empty? # checks if first_name is empty
+
+Try the following to see the results
+"".empty?
+" ".empty?
+nil.empty?
+nil.nil?
+
+To clear the screen while in irb console, use ctrl-l
+
+String interpolation example:
+first_name = "Mashrur"
+last_name = "Hossain"
+new_string = "The full name is #{first_name} #{last_name}"
+
+String interpolation does NOT work with single quotes ' ', it requires double quotes " "
+The following will not give you the result you are looking for:
+new_string = 'The full name is #{first_name} #{last_name}'
+
+We will continue our discussion on strings in the next video
+
+
+
+
+
+
+
+
+
+
+
