@@ -1,0 +1,73 @@
+An array is an ordered list of objects or elements
+
+It maintains an index of these elements so they can accessed easily
+
+To create an array
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+They can be anything, change the elements and strings etc around, array of arrays
+show how to access an element is an array
+
+index starts at 0
+
+To grab an element of the array type in the array name then put in the index within [] like below:
+a[4]
+a[3]
+a[0]
+etc.
+
+
+now methods in arrays
+puts a
+prints out entire array
+print a
+a.empty?
+a.is_a?(Array)
+a.include?("Mashrur")
+a.include?("Joe")
+a.reverse
+a.reverse!
+! mutates the caller
+type in a
+in reverse 
+a.reverse!
+
+if I want to have a random ordering
+a.shuffle
+
+a.shuffle!
+- lookup ruby documentation on the method or test it out
+
+Range:
+(0..25) is a range
+(0..25).to_a creates an array and fills it in with numbers between 0 and 25 (including 25)
+x = (0..25).to_a
+y = (0..100).to_a.shuffle
+
+useful method
+
+let's say you're building a card-game, and you're shuffling 52 cards and want their ordering at random, there you go:
+card_order = (1..52).to_a.shuffle!
+Now you have a shuffled deck of 52 cards, you may be wondering well these are numbers, how do I know which is which? well you can have a value associated with each card between 1 and 52 and know which one is which, like 1 = ace of spades 2 = king of spades and so on and so forth
+
+Let's look at more things to an array
+
+z << 25
+z.push(30)
+z.pop
+z.pop(2)
+z.unshift("mashrur")
+z << 3
+z << 6
+z.uniq
+z.uniq!
+
+One of the things you'll need to work with arrays or data-structures like is, is you're gonna need to be able to easily iterate through them, like the whole structure, you have here 99 numbers, you may need to loop through this entire array, how would you do that? 
+
+so far we've simply done z[5] but the preferred way of doing this is with iterators, meaning it loops through the entire array and performs some sort of function, like addition, mutation, anything
+
+loop through array, preferred way in Ruby is with .each method so y.each { } -> signifies this is a block of code within pipes
+
+y.each { |i| puts i }
+y.each { |i| print i }
+

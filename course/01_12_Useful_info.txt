@@ -1,0 +1,52 @@
+We're going to look at if/else a little more here...we're first going to build a project, it'll be a game and the game will be how many fingers
+
+This is how it runs, show it....ok now take a shot, pause this video and build it...ok I hope you managed that, this is how I'd do it
+
+Create a new file called fingers_game.rb
+
+
+computer_fingers = rand(6)
+puts "How many fingers am I holding up?"
+guess = gets.chomp.to_i
+puts "I had #{computer_fingers} held out!"
+puts "You guessed right!" if computer_fingers == guess
+
+Ok now let's explore case, which is a variant for if branching:
+puts "Enter in a choice of 1 or 2"
+prompt = gets.chomp
+
+result = case prompt
+  when "1" then "multiply"
+  when "2" then "divide"
+  else "Don't know what you're talking about"
+end
+puts result
+
+Try a different example:
+Puts "Enter in your exam score"
+score = gets.chomp.to_i
+score = 70
+
+result = case score
+
+  when 0..40 then "Fail"
+  when 41..60 then "Pass"
+  when 61..70 then "Pass with merit"
+  when 71..100 then "You're a genius!"
+  else "Invalid score"
+end
+
+puts result
+
+Homework Exercises:
+
+1) Now use this method of using case to re-work the calculator we built - multiply, add, divide, subtract and mod and then post the result (ensure it works correctly) to Q&A
+
+2) Then use this same method to apply grades based on the score entered by the student, prompt the user for their score, and then create the grade ranges based on the following scores (as an example):
+
+0 - 40 - F
+41 - 55 - D
+56 - 70 - C
+71 - 85 - B
+86 - 100 - A
+

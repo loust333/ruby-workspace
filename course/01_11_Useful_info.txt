@@ -1,0 +1,68 @@
+How do we implement conditionals? meaning if this, then that, or if that, then something else? 
+
+We do that by using an if statement, and it's called branching
+if # condition
+ #execute
+end
+
+A variant of this, if another piece of code needs to execute if the condition is not met:
+
+if # condition
+  execute logic
+else
+  execute logic
+end
+
+A variant of these two, if another condition needs to be tested (or more), then the following can be used:
+if # condition
+  # execute logic
+elsif # condition
+  # execute some other logic
+else 
+  # execute
+end
+
+This is how you use if/else branching
+
+Applying this methodology, we can prompt the user for their choice in our calculator program and act based on their choice:
+
+if prompt == "1"
+  puts "you have chosen to multiply"
+elsif prompt == "2"
+  puts "you have chosen to divide"
+elsif prompt == "3"
+  puts "you have chosen to subtract"
+elsif prompt == "4"
+  puts "you have chosen to find the mod"
+else
+  puts "you have made an invalid choice"
+end
+
+Remember to convert prompt to int or put the choices 1, 2, 3, 4 within quotes like "1", "2" etc. to perform the comparison correctly!
+
+Now you can call the methods based on the user's choice like below:
+
+if prompt == "1"
+  puts "You have chosen to multiple #{first_number} with #{second_number}"
+  puts multiply(first_number, second_number)
+elsif prompt == "2"
+  puts "You have chosen to divide........ and so on
+
+Don't forget to post your code (beautified) to the Questions!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

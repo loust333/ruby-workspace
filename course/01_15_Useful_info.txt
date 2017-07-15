@@ -1,0 +1,52 @@
+like an array a hash is a data structure that stores values but unlike an array they have a key and value associated with each element, so each element in a hash exists in a key value state. The key is usually a symbol or can be anything else...value can be anything
+
+example of a hash:
+my_details = { 'name' => 'Mashrur', 'favcolor' => 'red' }
+
+start irb and create the following hash:
+my_details = { 'name' => 'Mashrur', 'favcolor' => 'red' }
+
+my_details['favcoor'] -> this will return 'red', this is why it's called a dictionary, since you reference the key to get the value
+
+Typically hashes are defined by this structure, myhash= {a: 1, b: 2, c: 3}
+This is the same as (old syntax) my_new_hash = {:a => 1, :b => 2, :c => 3}
+To get the value of a, simply type in
+myhash[:a] 
+
+puts myhash[:b]
+
+let's add a new item to this
+myhash[:d] = 7
+myhash
+now it has a d
+myhash[:name] = "Mashrur"
+
+what if I want to delete an item from the hash
+myhash.delete(:b)
+within parenthesis
+
+iterate through the hash
+
+numbers = whole bunch of key and values
+
+numbers.each { |key, value| puts key}
+numbers.each { |key, value| puts value}
+numbers.each { |key, value| puts "The key is #{key}, the value is #{value}" }
+
+What if I want to iterate through the hash and delete all values over 3
+
+numbers.each { |k, v| numbers.delete(k) if v > 3 }
+
+How can we use select in hashes?
+
+eg. what if I want all the numbers if the numbers are odd
+numbers.select { |k, v| v.odd? }
+
+Practice!
+
+
+
+
+
+
+

@@ -1,0 +1,46 @@
+To only print odd numbers from our array:
+card_order.each { |i| print i if i.odd? }
+
+To only print even numbers from our array:
+card_order.each { |i| print i if i.even? }
+
+
+Traditional way of doing this using for loop
+for i in card_order
+  puts i
+end
+for i in card_order
+  puts "hi #{i}"
+end
+
+names = ["joe", "john etc"]
+names.each do |food|
+puts "Hello #{food}"
+end
+
+names = ["joe", "john etc"]
+names.each do |food|
+puts "Hello #{food.capitalize}"
+end
+
+Capitalize is a method that capitalizes the first letter
+ruby preferred way names.each { |food| puts "Hello #{food.capitalize}" }
+
+Lastly select method uses boolean expression:
+
+y.select { |i| i.odd? } select takes in a boolean expression and returns the element if it passes that expresson, in this case if the element is odd
+
+Another method join takes in elements from an array and joins them to form a string
+p = ["my", "name", "is", "Mashrur"]
+p.join would result in mynameisMashrur as the string
+p.join(" ")
+"my name is Mashrur"
+
+Now to split the string by " " and return to it's original array form, use the split method below:
+p.split
+
+IMPORTANT: Go over the video again, type out the content and practice
+
+Create a couple of arrays and make them do different things
+
+In the next video we'll look at another data structure -> Hash
