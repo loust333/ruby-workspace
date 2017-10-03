@@ -1,0 +1,14 @@
+Style guide link: https://github.com/bbatsov/ruby-style-guide
+
+Homework assignment: Read the style guide upto classes
+
+Post a styled method with variable name, correct definition and an if-else branch to the Q&A section
+
+Good luck!
+
+
+
+
+
+
+

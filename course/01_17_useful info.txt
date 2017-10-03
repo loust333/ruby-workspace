@@ -1,0 +1,17 @@
+Create a zip code dictionary of 4-5 (or more) zip codes
+
+You'll need a hash to store the zip codes
+You'll need a method to display city names
+You'll need a method to display the value of a key value pair
+
+You'll need a loop to keep the game running, using similar structure below:
+
+loop do
+  puts "Do you want to play the game?"
+  prompt = gets.chomp
+  if prompt != 'y'
+    break
+  end
+  puts "Hello we're playing again"
+  # write in all your game execution code here
+end
