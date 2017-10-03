@@ -1,0 +1,27 @@
+We want to read and output the contents of a file without any formatting or anything like that
+
+File_reader.rb -> Reads in a simple file, what I want to do is simply read a text file and output it’s contents
+Final code:
+class FileReader
+  attr_accessor :file
+
+  def initialize(file)
+    @file = file
+  end
+
+  def read
+    puts "Reading file using simple file reader."
+
+    contents = File.read(@file)
+    puts contents
+  end
+end
+
+
+Create a new file called file_operator.rb and fill it in with the following:
+
+require_relative 'file_reader'
+
+FileReader.new(ARGV[0]).read 
+
+Run file_operator with a text file as an argument and it'll output the contents to the console

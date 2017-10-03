@@ -1,0 +1,100 @@
+Create a new file and call it csv_reader.rb
+
+# to work with csv files we have to require csv, this is a standard ruby library that allows us to work with CSV files
+
+require 'csv'
+
+def read
+ puts "Reading a file with csv content"
+ contents = CSV.read('sample.csv')
+ puts contents
+end
+
+Read
+
+Now we turn it into a class:
+
+require 'csv'
+
+class CsvReader
+  def read
+    puts "Reading a file with csv content"
+    contents = CSV.read('sample.csv')
+    puts contents
+  end
+end
+
+x = CsvReader.new
+x.read
+
+Now we’re going to use the initialize method and run it:
+require 'csv'
+
+class CsvReader
+  def initialize(file)
+    @file = file
+  end
+  
+  def read
+    puts "Reading a file with csv content"
+    contents = CSV.read(@file)
+    puts contents
+  end
+end
+
+x = CsvReader.new('sample.csv')
+x.read
+
+But notice here, we already have the initialize method defined in file_reader.rb so we can simply inherit from there and then we won’t have to re-write this code:
+require 'csv'
+require_relative 'file_reader'
+
+class CsvReader < FileReader
+  
+  def read
+    puts "Reading a file with csv content"
+    contents = CSV.read(@file)
+    puts contents
+  end
+  
+end
+
+x = CsvReader.new('sample.csv')
+x.read
+
+Since we’ve been using the runner file (file_operator.rb) we’re now going to update that file to run this as well:
+
+require_relative 'file_reader'
+require_relative 'csv_reader'
+
+#FileReader.new(ARGV[0]).read 
+CsvReader.new(ARGV[0]).read
+
+Run it with ruby file_operator.rb sample.csv
+
+Now we will work with a YAML file and show what that looks like:
+Create a sample.yml file
+Create another new file called yaml_reader.rb and fill it in wiht the following:
+
+require 'yaml'
+require_relative 'file_reader'
+
+class YamlReader < FileReader
+  def read
+    puts "Reading file using YML file reader."
+
+    contents = YAML.load_file(@file)
+    puts contents
+  end
+end
+
+Now update the runner to run this:
+require_relative 'file_reader'
+require_relative 'csv_reader'
+require_relative 'yaml_reader'
+
+#FileReader.new(ARGV[0]).read 
+#CsvReader.new(ARGV[0]).read
+YamlReader.new(ARGV[0]).read
+
+Then run it using ruby file_operator.rb sample.yml
