@@ -1,0 +1,78 @@
+Create json_reader.rb and fill it in:
+require 'json'
+require_relative 'file_reader'
+
+class JsonReader < FileReader
+  def read
+    puts "Reading file using JSON file reader."
+
+    json_file = File.read(@file)
+    contents = JSON.load(json_file)
+    puts contents
+  end
+end
+
+Now update the file_operator to make this work:
+
+require_relative 'file_reader'
+require_relative 'csv_reader'
+require_relative 'yaml_reader'
+require_relative 'json_reader'
+
+#FileReader.new(ARGV[0]).read 
+#CsvReader.new(ARGV[0]).read
+#YamlReader.new(ARGV[0]).read
+JsonReader.new(ARGV[0]).read
+
+Now we will update the file_operator to work automatically with this based on file extension (not name) and it calling the appropriate class to do the reading, this is putting in display the OOP strategy:
+
+Look at the class names, essentially all of them are the same except for the class name, so if we could read in the extension of the file and dynamically determine the class to be used based on that, we could accomplish this without needing this code
+
+So first we need a method to identify the extension
+
+def file_extension(filename)
+  filename.split('.').last # the .last will give you the last element in the array, and split with . will split it into an array based on the .
+end
+
+puts file_extention(ARGV[0])
+
+Now if I run this with sample.csv it should give me csv so we know it’s working, test it for json and csv
+
+Now write out the method:
+def reader_class
+  ext = file_extension(ARGV[0])
+
+  return CsvReader if ext == 'csv'
+  return YamlReader if ext == 'yml'
+  return JsonReader if ext == 'json'
+  FileReader
+End
+
+puts reader_class
+
+Test it out!
+
+Now we can use this info, add in the new object of that class
+reader_class.new(ARGV[0]).read instead of puts reader_class
+Run it with a file and check the results
+
+Now we have two places where we use ARGV[0] here, which we can turn into a constant
+
+FILENAME = ARGV[0]
+
+def file_extension(filename)
+  filename.split('.').last 
+end
+
+def reader_class
+  ext = file_extension(FILENAME)
+
+  return CsvReader if ext == 'csv'
+  return YamlReader if ext == 'yml'
+  return JsonReader if ext == 'json'
+  FileReader
+end
+
+reader_class.new(FILENAME).read
+
+Why do we replace ARGV[0] with FILENAME when it’s listed as FILENAME In two places as well, because it’s an external detail that’s independent of the function of the app, so if we choose in the future how to get the filename, we only have to change it when we assign filename, instead of having to do that in every instance of ARGV[0] mentioned in the code
