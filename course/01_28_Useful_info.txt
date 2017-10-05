@@ -1,0 +1,39 @@
+Now we want to do something with the files that we’re reading. So we want to first write a program to count a specific occurance of a word in the file
+
+Create a file named word_counter.rb, we’re going to keep this simple and read from a .text file
+
+First create a method called count_words
+Def count_words
+
+End
+
+Now build in the rest slowly, starting with constants and then filling in the count_words method:
+
+# Assign arguments to constants
+
+FILENAME = ARGV[0]
+
+WORD_TO_COUNT = ARGV[1]
+
+def count_words
+  # Read contents of file into a string
+  contents = File.read(FILENAME)
+
+  # Remove punctuation and newlines, and convert string to lowercase
+  contents = contents.gsub(/[^a-z0-9\s]/i, ' ')
+  contents = contents.gsub(/\n/, ' ')
+  contents.downcase!
+
+  # Split string into words
+  words = contents.split(' ')
+
+  # Count the number of times the word appears in the array
+  count = words.count(WORD_TO_COUNT.downcase)
+
+  puts "The number of times '#{WORD_TO_COUNT}' appears in #{FILENAME} is #{count}."
+end
+
+# Call the word counting method
+count_words
+
+# USAGE: ruby word_counter.rb sample.txt the
