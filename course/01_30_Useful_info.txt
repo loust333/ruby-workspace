@@ -1,0 +1,53 @@
+Create a json_project folder under ruby_projects
+Within it create a user_permissions_template.json file and fill it in:
+{"accounts": "read",
+"policies": "write",
+"users": "write"}
+
+Now create a user.rb file where you’ll have user class, that reads in the permissions, and creates a new file with user data that is supplied and the permissions from that file
+
+First step, to read in JSON you need require ‘json’ and class User end
+Second, print out the contents of the JSON file:
+
+require 'json'
+class User
+  def read_permissions
+    contents = File.read('user_permissions_template.json')
+    puts contents
+  end
+end
+
+user = User.new
+puts user.read_permissions
+
+This outputs a JSON string, but we need to convert this to a hash so we can use that as key-value combos
+Add JSON.load ahead of File.read to accomplish this
+
+Now we need to initialize user with the information that’s passed in from our runner, meaning we will need name and email which we’ll use to identify user
+
+Do the following and run code:
+require 'json'
+class User
+  def initialize(name, email)
+    @name = name
+    @email = email
+  end
+  
+  def read_permissions
+    contents = JSON.load(File.read('user_permissions_template.json'))
+    puts contents
+  end
+end
+
+user = User.new('mashrur', 'mashrur@example.com')
+puts user.name
+puts user.email
+puts user.read_permissions
+
+It’ll say undefined method name, since we don’t have attribute accesors to access these instance variables outside the class
+
+So let’s add attribute_accessor, after user class:
+attr_accessor :name, :email
+
+Run it, and it works! 
+

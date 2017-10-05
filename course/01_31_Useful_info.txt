@@ -1,0 +1,57 @@
+Now we have the information read from user and displayed, and information read from the permissions and displayed. So now we have to combine the user and permission data into a new file so step 1, output the info in combined format first:
+
+Make it look like this:
+require 'json'
+class User
+  attr_accessor :name, :email
+  
+  def initialize(name, email)
+    @name = name
+    @email = email
+    @permissions = read_permissions
+  end
+  
+  def read_permissions
+    contents = JSON.load(File.read('user_permissions_template.json'))
+    contents
+  end
+end
+
+user = User.new('mashrur', 'mashrur@example.com')
+puts user.inspect
+
+But ruby returns the last evaluated value from all methods, so we can get rid of contents here
+  def read_permissions
+    JSON.load(File.read('user_permissions_template.json')
+  end
+
+Now we need to output this content to a file and save it so we will create a save method. So first we need to convert this to a JSON object since now it’s just a hash
+Here is the updated code: 
+  def save
+    self_json = {name: @name, email: @email, permissions: @permissions}.to_json
+    puts self_json
+  end
+
+Then update the execution code at the bottom:
+user = User.new('mashrur', 'mashrur@example.com')
+puts user.inspect
+user.save
+
+Now add the file information to write it to the file, updated code below:
+  def save
+    self_json = {name: @name, email: @email, permissions: @permissions}.to_json
+    File.open('users.json', 'a') do |f|
+      f.puts self_json
+    end
+  end
+
+Run it and it gives you a file with the information
+
+Now let’s add a runner to separate out execution code from the user class, create a file called runner.rb and fill it in:
+
+require_relative 'user'
+
+user = User.new('joe', 'joe@example.com')
+user.save
+
+Run it and success!
