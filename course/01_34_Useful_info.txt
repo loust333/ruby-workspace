@@ -1,0 +1,29 @@
+So now, let’s create a runner so we can run this and have multiple CSV files created for the same day’s price
+Create a file called runner.rb 
+
+require_relative 'stock_quote'
+
+stock_price = StockQuote.price_by_symbol('AAPL')
+stock_price2 = StockQuote.price_by_symbol('GOOG')
+stock_price3 = StockQuote.price_by_symbol('MSFT')
+
+stock_written = StockQuote.write_price_by_symbol('AAPL', stock_price)
+stock_written = StockQuote.write_price_by_symbol('GOOG', stock_price2)
+stock_written = StockQuote.write_price_by_symbol('MSFT', stock_price3)
+
+This looks ugly, so create a method that glues the two together:
+require_relative 'stock_quote'
+
+def stock_price_selector(symbol_array)
+  symbol_array.each do |symbol|
+    stock_price = StockQuote.price_by_symbol(symbol)
+    stock_written = StockQuote.write_price_by_symbol(symbol, stock_price)
+  end
+end
+
+stock_price_selector('AAPL', 'GOOG', 'MSFT')
+
+Run it, and it gives you an error..You fix this error by converting what you enter in into an array using the splat or (*) operator, add in * before symbol_array argument in your stock_price_selector method
+
+Run it and it works!
+

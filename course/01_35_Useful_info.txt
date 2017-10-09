@@ -1,0 +1,100 @@
+Now we want to work with historical prices, not just 1 day’s price so let’s create a file historical_stock_quote.rb
+
+We want to work with 1 year’s historical data
+First use the method provided
+require 'yahoo-finance'
+
+yahoo_client = YahooFinance::Client.new
+data = yahoo_client.historical_quotes("AAPL", { start_date: Time::now-(24*60*60*365), end_date: Time::now }) # 1 year worth of data
+
+puts data
+
+Then update the method with data.map!(&:open) to just get the opening price, update it to look like below:
+def historical_price(symbol)
+  yahoo_client = YahooFinance::Client.new
+  data = yahoo_client.historical_quotes(symbol, { start_date: Time::now-(24*60*60*365), end_date: Time::now })
+  data.map!(&:open)
+end
+
+Update it again to return array with date and price:
+require 'yahoo-finance'
+
+def historical_price(symbol)
+  yahoo_client = YahooFinance::Client.new
+  data = yahoo_client.historical_quotes(symbol, { start_date: Time::now-(24*60*60*365), end_date: Time::now })
+  data.map do |quote|
+    [quote.trade_date, quote.open]
+  end
+end
+
+puts historical_price('GOOG')
+
+Run it and get 365 days worth of prices
+
+Now copy over the earlier write method and paste it here:
+  def self.write_price_by_symbol(symbol, price)
+    filename = "#{symbol}.csv"
+    todays_date = Time.now.strftime('%Y-%m-%d')
+    File.open(filename, "a") do |file|
+      file << "#{todays_date}, #{price}\n"
+    end
+  end
+
+Now update this write method to work with our current program and write to a file:
+def write_price_by_symbol(symbol, quotes)
+  filename = "#{symbol}.csv"
+  CSV.open(filename, "w") do |file|
+    quotes.each do |quote|
+      file << quote
+    end
+  end
+end
+
+price_array = historical_price('AAPL')
+write_price_by_symbol('AAPL', price_array)
+
+Run it, SUCCESS!
+
+Now we want to use the runner for this, so let’s convert our code to a class (ensure you make all changes in historical_stock_data.rb
+
+require 'yahoo-finance'
+class HistoricalStockData
+  def self.historical_price(symbol) #this was updated
+    yahoo_client = YahooFinance::Client.new
+    data = yahoo_client.historical_quotes(symbol, { start_date: Time::now-(24*60*60*365), end_date: Time::now })
+    data.map do |quote|
+      [quote.trade_date, quote.open]
+    end
+  end
+
+  def self.write_price_by_symbol(symbol) #this was updated
+    quotes = historical_price(symbol) #this was updated
+    filename = "#{symbol}.csv"
+    CSV.open(filename, "w") do |file|
+      quotes.each do |quote|
+        file << quote
+      end
+    end
+  end
+end
+
+
+Now create a runner or update existing runner to run this:
+#require_relative 'stock_quote'
+require_relative 'historical_stock_data'
+#x = ['AAPL', 'GOOG', 'MSFT']
+
+#def stock_price_selector(symbol_array)
+#  symbol_array.each do |symbol|
+#    stock_price = StockQuote.price_by_symbol(symbol)
+#    stock_written = StockQuote.write_price_by_symbol(symbol, stock_price)
+#  end
+#end
+
+#stock_price_selector(x)
+
+puts HistoricalStockData.historical_price('AAPL')
+HistoricalStockData.write_price_by_symbol('AAPL')
+
+Run the runner.rb -> Success!
+
