@@ -1,0 +1,63 @@
+Now we want to analyze the data now and can do any number of things, what we’ll do is very simple which is find the average price over the period of 1 year
+
+We want to get a symbol and lookup a file based on that symbol -> method
+We want to open the file and grab the data -> method
+Create a method to perform the analysis -> method
+
+Let’s create a situaton where what if the file does not exist, we want to catch that exception, create a new file stock_quote_analyzer.rb:
+
+require 'csv'
+class StockQuoteAnalyzer
+  def self.symbol_lookup(symbol)
+    begin 
+      CSV.read("#{symbol}.csv") 
+    rescue StandardError => e
+      puts e
+    end
+  end
+  
+  def average_price
+    
+  end
+  
+end
+
+StockQuoteAnalyzer.symbol_lookup('LALALALALA')
+
+Run it and it works
+
+Now we want to get (isolate) the price from the price and date
+So update average price method:
+  def self.average_price(symbol)
+    quotes = symbol_lookup(symbol)
+    prices = quotes.map do |quote|
+      quote[1].to_f
+    end
+    puts prices
+  end
+  
+end
+
+StockQuoteAnalyzer.average_price('AAPL')
+
+Run it and you get the prices
+
+Now update the method to get the sum of all prices for the year
+  def self.average_price(symbol)
+    quotes = symbol_lookup(symbol)
+    prices = quotes.map do |quote|
+      quote[1].to_f
+    end
+    analysis = prices.inject(:+)
+    puts analysis
+  end
+
+Run it and you get total of all prices for the year
+
+Now to get average, you divide by number of items (or number of price occurances) and you get that by prices.length so change it to:
+
+analysis = prices.inject(:+) / prices.length 
+
+Run it and success!
+
+Congratulations on completing the Ruby portion of the course, great work!
