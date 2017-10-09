@@ -1,0 +1,84 @@
+Now we’re going to build our final Ruby Projects. And it’s going to focus on analysis of real financial data that is grabbed from teh stock market. What we want to build is a program that:
+Can read in data about a stock’s price for however many days in the past, grab that data from financial sites, create a new file and paste all of the price data in a readable format and then we can add features which go in to this file, read the data and perform some kind of analysis we want on it, basically simulating a real life data analysis program
+
+First we will need the ability to read financial data:
+Create a file called stock_quote.rb
+First, to get the price we need a ruby gem that uses an API to connect to a financial data site, like yahoo finance so we’ll use the yahoo-finance gem, you can look it up on github, github.com/herval/yahoo-finance
+
+Gem install yahoo-finance
+
+Create a file called stock_quote.rb and fill it in to get the price for a stock:
+require 'yahoo-finance'
+
+client = YahooFinance::Client.new
+puts client.quotes(['AAPL'], [:open])
+
+Let’s wrap it in a class and a method:
+require 'yahoo-finance'
+
+class StockQuote
+  def self.price_by_symbol
+    client = YahooFinance::Client.new
+    puts client.quotes(['AAPL'], [:open])
+  end
+end
+
+stock = StockQuote.price_by_symbol
+
+Make it run and see if it works
+
+Now change it so you can pass in the name of the stock
+require 'yahoo-finance'
+
+class StockQuote
+  def self.price_by_symbol(symbol)
+    client = YahooFinance::Client.new
+    puts client.quotes([symbol], [:open])
+  end
+end
+
+stock = StockQuote.price_by_symbol('AAPL')
+
+Save and run it again
+
+Next step is the aiblity to write this to a file, we’ll use CSV since CSV and excel are widely used formats for data-analysis in the financial world
+
+http://ruby-doc.org/core-2.3.0/IO.html#method-c-new-label-Open+Mode
+
+A+ is when you can read, and write to a file, and it appends at the end of the file if it already exists otherwise it creates a file.
+
+So write a method to write to a file and make it look like below, then run it:
+require 'yahoo-finance'
+
+class StockQuote
+  def self.price_by_symbol(symbol)
+    client = YahooFinance::Client.new
+    puts client.quotes([symbol], [:open])
+  end
+  
+  def self.write_price_by_symbol(symbol, price)
+    filename = "#{symbol}.csv"
+    File.open(filename, "a") do |file|
+      file << "#{todays_date}, #{price}\n"
+    end
+  end
+end
+
+stock_price = StockQuote.price_by_symbol('AAPL')
+stock_written = StockQuote.write_price_by_symbol('AAPL', stock_price)
+
+This will give you an error since todays_date is not defined
+
+So define todays_date right under filename
+todays_date = Time.now.strftime('%Y-%m-%d') add this below filename
+
+What is strftime, it’s str - string, f - formatted, time
+
+Save and run it, and you'll see the date but symbol won’t show up, that’s becasue we use puts and puts returns nil, so we need to get rid of puts and run it and you get a weird stock format price, we want to get the actual float of this, the gem says we can get this by calling any method like open or close on it so let’s do that, change the method to look like below:
+
+  def self.price_by_symbol(symbol)
+    client = YahooFinance::Client.new
+    data = client.quotes([symbol], [:open])
+    data[0].open
+  end
+
